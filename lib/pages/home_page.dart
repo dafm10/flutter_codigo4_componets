@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: SingleChildScrollView( // habilita el scroll cuando pasa la altura de la columna
           child: Column(
             children: [
               const SizedBox(
@@ -26,9 +26,11 @@ class HomePage extends StatelessWidget {
                 width: 270,
                 decoration: BoxDecoration(
                   color: Colors.blue,
+                  // DecorationImage se adapta al contenedor padre y deberia tener su altura y/o anchura
                   image: const DecorationImage(
                     image: NetworkImage(
-                        "https://ih1.redbubble.net/image.622748019.0162/pp,504x498-pad,600x600,f8f8f8.u1.jpg"),
+                        "https://ih1.redbubble.net/image.622748019.0162/pp,504x498-pad,600x600,f8f8f8.u1.jpg"
+                    ),
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -51,6 +53,7 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(
                 width: 100.0,
+                // linea delgada debajo de Flutter
                 child: Divider(
                   thickness: 0.8,
                 ),
@@ -115,13 +118,16 @@ class ItemComponentWidget extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black12.withOpacity(0.09),
+            // posicionamiento de la sombra
             offset: Offset(4, 4),
+            // grosor de la sombra de la caja
             blurRadius: 12,
           ),
         ],
       ),
-      child: ListTile(
+      child: ListTile( // ListTile ocupa el ancho del padre, columna en este caso
         onTap: (){
+          // haciendo clic aqui nos lleva a la pagina indicada en toPage
           Navigator.push(context, MaterialPageRoute(builder: (context) => toPage));
         },
         leading: Icon(
