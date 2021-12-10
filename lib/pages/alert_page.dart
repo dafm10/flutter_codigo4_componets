@@ -7,43 +7,49 @@ import 'package:google_fonts/google_fonts.dart';
 class AlertPage extends StatelessWidget {
   const AlertPage({Key? key}) : super(key: key);
 
-  void matasquita(BuildContext mandarina) {
+  void showMyAlert(BuildContext mandarina) {
+    // aqui comienza el armado de la alerta
+    // siempre recibe un context y builder
     showDialog(
       context: mandarina,
-      barrierDismissible: false,
-      // barrierColor: Colors.deepPurpleAccent,
+      barrierDismissible:
+          false, // obliga a salir del alert haciendo clic en un boton
+      // barrierColor: Colors.deepPurpleAccent, // color de fondo al activarse la alerta
       builder: (BuildContext context) {
         return AlertDialog(
-          shape:
+          shape: // para cambiar la forma de la alerta
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          // title: Text("Holaaaaaasssssss"),
+          title: const Text(
+            "APP Alert",
+            textAlign: TextAlign.center,
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           content: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.min, // tamaño del eje principal
             children: [
               Image.network(
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/2048px-Check_green_icon.svg.png",
                 height: 90.0,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
-              Text(
+              const Text(
                 "FLUTTER ALERT",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Text(
-                "Descripción de la alerta!",
+              const Text(
+                "Practicando con Alertas!",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -81,13 +87,14 @@ class AlertPage extends StatelessWidget {
   void showAlert2(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "Caregiver Review",
+                "Programmer Review",
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.bold,
                   color: Color(0xff8491B0),
@@ -97,10 +104,10 @@ class AlertPage extends StatelessWidget {
                 thickness: 0.9,
                 color: Color(0xff8491B0).withOpacity(0.3),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14.0,
               ),
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 24,
                 child: Icon(
                   Icons.person,
@@ -109,11 +116,11 @@ class AlertPage extends StatelessWidget {
                 ),
                 backgroundColor: Color(0xff7A99D6),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14,
               ),
               Text(
-                "Amanda Lopez",
+                "David Fernández",
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   fontSize: 14.0,
@@ -128,12 +135,12 @@ class AlertPage extends StatelessWidget {
                   color: Color(0xff545c72),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Icon(
                     Icons.star,
                     color: Color(0xffFFB459),
@@ -156,14 +163,16 @@ class AlertPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: Text(
                       "Not Now",
                       style: GoogleFonts.poppins(
@@ -175,7 +184,7 @@ class AlertPage extends StatelessWidget {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff7A99D6),
+                      primary: Color(0xff7A99D6), // color del boton
                     ),
                     onPressed: () {},
                     child: Text(
@@ -203,13 +212,30 @@ class AlertPage extends StatelessWidget {
         title: Text("Alert Page"),
       ),
       body: Center(
-        child: TextButton(
-          onPressed: () {
-            // matasquita(context);
-            showAlert2(context);
-          },
-          child: Text("Show alert!"),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              onPressed: () {
+                // context indica la posicion dentro del widget build
+                showAlert2(context);
+              },
+              child: Text(
+                "Show alert 1",
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                // context indica la posicion dentro del widget build
+                showMyAlert(context);
+              },
+              child: Text(
+                "Show alert 2",
+              ),
+            ),
+          ],
         ),
+
       ),
     );
   }
